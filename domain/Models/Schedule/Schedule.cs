@@ -21,5 +21,15 @@ namespace Domain.Schedule.Models
             Begin = begin;
             End = end;
         }
+
+        public Schedule(Schedule other)
+        {
+            Id = other.Id;
+
+            DoctorId = other.DoctorId;
+
+            Begin = other.Begin;
+            End = other.End;
+        }
     }
 }

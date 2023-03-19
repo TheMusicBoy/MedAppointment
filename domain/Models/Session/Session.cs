@@ -24,5 +24,16 @@ namespace Domain.Session.Models
             DoctorId = doctor;
         }
 
+        public Session (Session other)
+        {
+            Id = other.Id;
+
+            Begin = other.Begin;
+            End = other.End;
+
+            PatientId = other.PatientId;
+            DoctorId = other.DoctorId;
+        }
+
     }
 }

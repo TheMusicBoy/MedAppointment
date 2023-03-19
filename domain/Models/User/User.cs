@@ -26,4 +26,13 @@ public class User
         PhoneNumber = phoneNumber;
     }
 
+    public User(User other) {
+        UserId = other.UserId;
+        Login = other.Login;
+        Password = other.Password;
+        RoleId = other.RoleId;
+        FullName = other.FullName;
+        PhoneNumber = other.PhoneNumber;
+    }
+
 }

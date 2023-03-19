@@ -10,5 +10,10 @@ namespace Domain.Specialization.Models
             Id = IdCreator.getInstance().NextId();
             Name = name;
         }
+
+        public Specialization(Specialization other) {
+            Id = other.Id;
+            Name = other.Name;
+        }
     }
 }
