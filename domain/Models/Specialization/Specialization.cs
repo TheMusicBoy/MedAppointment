@@ -1,6 +1,6 @@
 using Domain.Logic;
 
-namespace Domain.Models.Specialization
+namespace Domain.Specialization.Models
 {
     public class Specialization {
         public int Id { get; }

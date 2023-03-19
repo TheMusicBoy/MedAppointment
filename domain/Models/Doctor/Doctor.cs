@@ -1,15 +1,15 @@
 using Domain.Logic;
-using Domain.Models.Specialization;
+using Sp = Domain.Specialization.Models;
 
-namespace Domain.Models.Doctor
+namespace Domain.Doctor.Models
 {
     public class Doctor
     {
         public int Id { get; }
         public string FullName { get; set; }
-        public Specialization.Specialization Specialization { get; set; }
+        public Sp.Specialization Specialization { get; set; }
 
-        Doctor(string fullName, Specialization.Specialization specialization) {
+        Doctor(string fullName, Sp.Specialization specialization) {
             Id = IdCreator.getInstance().NextId();
 
             FullName = fullName;

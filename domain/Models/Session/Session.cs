@@ -1,7 +1,7 @@
 using System;
 using Domain.Logic;
 
-namespace Domain.Models.Session
+namespace Domain.Session.Models
 {
     public class Session
     {
