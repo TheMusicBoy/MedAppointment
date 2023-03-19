@@ -1,0 +1,7 @@
+# Build files
+*bin/
+*obj/
+
+# IDE directory
+.vscode/
+.idea/
