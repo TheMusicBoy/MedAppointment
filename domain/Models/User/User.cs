@@ -1,8 +1,8 @@
-using R = Domain.Role.Models;
+using R = Domain.Role;
 using Domain.Logic;
 
 
-namespace Domain.User.Models;
+namespace Domain.User;
 
 public class User
 {
@@ -24,6 +24,15 @@ public class User
         RoleId = roleId;
         FullName = fullName;
         PhoneNumber = phoneNumber;
+    }
+
+    public User(User other) {
+        UserId = other.UserId;
+        Login = other.Login;
+        Password = other.Password;
+        RoleId = other.RoleId;
+        FullName = other.FullName;
+        PhoneNumber = other.PhoneNumber;
     }
 
 }

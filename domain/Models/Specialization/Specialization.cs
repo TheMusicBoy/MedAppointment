@@ -1,6 +1,6 @@
 using Domain.Logic;
 
-namespace Domain.Specialization.Models
+namespace Domain.Specialization
 {
     public class Specialization {
         public int Id { get; }
@@ -9,6 +9,11 @@ namespace Domain.Specialization.Models
         public Specialization(string name) {
             Id = IdCreator.getInstance().NextId();
             Name = name;
+        }
+
+        public Specialization(Specialization other) {
+            Id = other.Id;
+            Name = other.Name;
         }
     }
 }

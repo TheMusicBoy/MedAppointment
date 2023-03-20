@@ -1,7 +1,7 @@
 using System;
 using Domain.Logic;
 
-namespace Domain.Session.Models
+namespace Domain.Session
 {
     public class Session
     {
@@ -22,6 +22,17 @@ namespace Domain.Session.Models
 
             PatientId = patient;
             DoctorId = doctor;
+        }
+
+        public Session (Session other)
+        {
+            Id = other.Id;
+
+            Begin = other.Begin;
+            End = other.End;
+
+            PatientId = other.PatientId;
+            DoctorId = other.DoctorId;
         }
 
     }
