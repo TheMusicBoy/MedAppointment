@@ -1,7 +1,7 @@
 using Domain.IRepository;
 using Rep = Domain.Schedule.IRepository;
-using DRep = Domain.Doctor.IRepository;
 using Model = Domain.Schedule.Models;
+using DRep = Domain.Doctor.IRepository;
 
 namespace Domain.Schedule.UseCases {
     public class ScheduleUseCases {

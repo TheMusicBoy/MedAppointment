@@ -1,5 +1,5 @@
 using Model = Domain.User.Models;
-using URep = Domain.User.IUserRepository;
+using URep = Domain.User.IRepository;
 using Rep = Domain.IRepository;
 
 namespace Domain.User.UseCases
@@ -11,7 +11,7 @@ namespace Domain.User.UseCases
             Repository = repository;
         }
 
-        public Rep.Result signupUser(Model.User user) {
+        public Rep.Result SignUpUser(Model.User user) {
             if (string.IsNullOrEmpty(user.Login)       ||
                 string.IsNullOrEmpty(user.Password)    ||
                 string.IsNullOrEmpty(user.PhoneNumber) ||
@@ -21,14 +21,14 @@ namespace Domain.User.UseCases
             if (Repository.ExistsByLogin(user.Login))
                 return Rep.Result.Fail("User with this login already exists");
 
-            if (Repository.ExistsById(user.UserId))
+            if (Repository.Exists(user.UserId))
                 return Rep.Result.Fail("User with this ID already exists");
 
             Repository.Create(user);
             return Rep.Result.Ok();
         }
 
-        public Rep.Result<Model.User> signinUser(string login, string password) {
+        public Rep.Result<Model.User> SignInUser(string login, string password) {
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
                 return Rep.Result.Fail<Model.User>("Login or password are empty");
 

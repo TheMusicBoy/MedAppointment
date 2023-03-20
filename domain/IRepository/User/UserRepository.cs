@@ -1,12 +1,10 @@
 using Domain.IRepository;
 using Model = Domain.User.Models;
 
-namespace Domain.User.IUserRepository
+namespace Domain.User.IRepository
 {
-    public interface IUserRepository : IRepository.IRepository<Models.User> {
+    public interface IUserRepository : IRepository<Models.User> {
         bool ExistsByLogin(string login);
-
-        bool ExistsById(int id);
 
         bool Exists(Model.User user);
 

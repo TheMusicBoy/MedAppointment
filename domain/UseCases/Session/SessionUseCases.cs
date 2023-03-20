@@ -6,6 +6,7 @@ using DRep = Domain.Doctor.IRepository;
 using DModel = Domain.Doctor.Models;
 using SModel = Domain.Schedule.Models;
 using Model = Domain.Session.Models;
+using URep = Domain.User.IRepository;
 
 namespace Domain.Session.UseCases
 {
@@ -15,13 +16,15 @@ namespace Domain.Session.UseCases
         SRep.IScheduleRepository ScheduleRepository;
         SpRep.ISpecializationRepository SpecializationRepository;
         DRep.IDoctorRepository DoctorRepository;
+        URep.IUserRepository UserRepository;
 
-        SessionUseCases(Rep.ISessionRepository sessionRepository, SRep.IScheduleRepository scheduleRepository, SpRep.ISpecializationRepository specializationRepository, DRep.IDoctorRepository doctorRepository)
+        SessionUseCases(Rep.ISessionRepository sessionRepository, SRep.IScheduleRepository scheduleRepository, SpRep.ISpecializationRepository specializationRepository, DRep.IDoctorRepository doctorRepository, URep.IUserRepository userRepository)
         {
             SessionRepository = sessionRepository;
             ScheduleRepository = scheduleRepository;
             SpecializationRepository = specializationRepository;
             DoctorRepository = doctorRepository;
+            UserRepository = userRepository;
         }
 
         Result<Model.Session> FreeTime(int doctor_id, int duration, DateOnly date)
@@ -57,6 +60,9 @@ namespace Domain.Session.UseCases
 
         Result<Model.Session> CreateSession(int patient_id, int doctor_id, int duration, DateOnly date)
         {
+            if (!UserRepository.Exists(patient_id))
+                return Result.Fail<Model.Session>("Patient doesn't exists");
+
             Result<Model.Session> result = FreeTime(doctor_id, duration, date);
 
             if (result.Failure)
@@ -69,6 +75,9 @@ namespace Domain.Session.UseCases
 
         Result<Model.Session> CreateSession(int patient_id, int duration, DateOnly date)
         {
+            if (!UserRepository.Exists(patient_id))
+                return Result.Fail<Model.Session>("Patient doesn't exists");
+
             List<DModel.Doctor> doctors = DoctorRepository.GetAll().ToList<DModel.Doctor>();
 
             foreach (var doctor in doctors)
