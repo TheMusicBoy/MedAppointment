@@ -1,9 +1,9 @@
 using Domain.IRepository;
-using Model = Domain.Specialization.Models;
+using Model = Domain.Specialization;
 
-namespace Domain.Specialization.IRepository
+namespace Domain.Specialization
 {
-    public interface ISpecializationRepository : IRepository<Model.Specialization> {
+    public interface ISpecializationRepository : IRepository<Specialization> {
         
     }
 }

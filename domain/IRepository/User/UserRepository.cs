@@ -1,15 +1,15 @@
 using Domain.IRepository;
-using Model = Domain.User.Models;
+using Model = Domain.User;
 
-namespace Domain.User.IRepository
+namespace Domain.User
 {
-    public interface IUserRepository : IRepository<Models.User> {
+    public interface IUserRepository : IRepository<User> {
         bool ExistsByLogin(string login);
 
-        bool Exists(Model.User user);
+        bool ExistsUser(User user);
 
         bool check(string login, string password);
 
-        Model.User GetByLogin(string login);
+        User GetByLogin(string login);
     }
 }

@@ -1,12 +1,12 @@
 using Domain.IRepository;
-using Model = Domain.Doctor.Models;
+using Model = Domain.Doctor;
 
-namespace Domain.Doctor.IRepository
+namespace Domain.Doctor
 {
-    public interface IDoctorRepository : IRepository<Model.Doctor> {
-        IEnumerable<Model.Doctor> GetBySpec(int specialization);
+    public interface IDoctorRepository : IRepository<Doctor> {
+        IEnumerable<Doctor> GetBySpec(int specialization);
 
-        IEnumerable<Model.Doctor> GetAll();
+        IEnumerable<Doctor> GetAll();
 
     }
 }

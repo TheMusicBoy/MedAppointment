@@ -1,4 +1,4 @@
-namespace Domain.Role.Models
+namespace Domain.Role
 {
     public enum Role {
         Patient = 1,

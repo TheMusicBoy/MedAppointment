@@ -1,22 +1,21 @@
 using Domain.IRepository;
-using DRep = Domain.Doctor.IRepository;
-using Model = Domain.Doctor.Models;
-using SRep = Domain.Specialization.IRepository;
+using D = Domain.Doctor;
+using S = Domain.Specialization;
 
-namespace Domain.Doctor.UseCases
+namespace Domain.Doctor
 {
     public class DoctorUseCases
     {
-        private DRep.IDoctorRepository DoctorRepository;
-        private SRep.ISpecializationRepository SpecializationRepository;
+        private IDoctorRepository DoctorRepository;
+        private S.ISpecializationRepository SpecializationRepository;
 
-        public DoctorUseCases(DRep.IDoctorRepository doctorRepository, SRep.ISpecializationRepository specializationRepository)
+        public DoctorUseCases(IDoctorRepository doctorRepository, S.ISpecializationRepository specializationRepository)
         {
             DoctorRepository = doctorRepository;
             SpecializationRepository = specializationRepository;
         }
 
-        Result CreateDoctor(Model.Doctor doctor)
+        public Result CreateDoctor(Doctor doctor)
         {
             if (DoctorRepository.Exists(doctor.Id))
                 return Result.Fail("This doctor already exists");
@@ -31,7 +30,7 @@ namespace Domain.Doctor.UseCases
             return Result.Ok();
         }
 
-        Result DeleteDoctor(int doctor_id)
+        public Result DeleteDoctor(int doctor_id)
         {
             if (!DoctorRepository.Exists(doctor_id))
                 return Result.Fail("This doctor doesn't exists");
@@ -40,27 +39,27 @@ namespace Domain.Doctor.UseCases
             return Result.Ok();
         }
 
-        Result<List<Model.Doctor>> GetAllDoctors()
+        public Result<List<Doctor>> GetAllDoctors()
         {
             var result = DoctorRepository.GetAll();
-            List<Model.Doctor> result_list = result.ToList<Model.Doctor>();
-            return Result.Ok<List<Model.Doctor>>(result_list);
+            List<Doctor> result_list = result.ToList<Doctor>();
+            return Result.Ok<List<Doctor>>(result_list);
         }
 
-        Result<Model.Doctor> GetDoctorById(int doctor_id)
+        public Result<Doctor> GetDoctorById(int doctor_id)
         {
             if (!DoctorRepository.Equals(doctor_id))
-                return Result.Fail<Model.Doctor>("Doctor doesn't exists");
+                return Result.Fail<Doctor>("Doctor doesn't exists");
 
-            return Result.Ok<Model.Doctor>(DoctorRepository.Get(doctor_id));
+            return Result.Ok<Doctor>(DoctorRepository.Get(doctor_id));
         }
 
-        Result<List<Model.Doctor>> GetDoctorBySpec(int spec)
+        public Result<List<Doctor>> GetDoctorBySpec(int spec)
         {
             if (!SpecializationRepository.Exists(spec))
-                return Result.Fail<List<Model.Doctor>>("Specialization doesn't exists");
+                return Result.Fail<List<Doctor>>("Specialization doesn't exists");
 
-            return Result.Ok<List<Model.Doctor>>(DoctorRepository.GetBySpec(spec).ToList<Model.Doctor>());
+            return Result.Ok<List<Doctor>>(DoctorRepository.GetBySpec(spec).ToList<Doctor>());
         }
 
     }

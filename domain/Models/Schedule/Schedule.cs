@@ -1,7 +1,7 @@
 using System;
 using Domain.Logic;
 
-namespace Domain.Schedule.Models
+namespace Domain.Schedule
 {
     public class Schedule
     {

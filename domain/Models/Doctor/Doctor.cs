@@ -1,7 +1,7 @@
 using Domain.Logic;
-using Sp = Domain.Specialization.Models;
+using Sp = Domain.Specialization;
 
-namespace Domain.Doctor.Models
+namespace Domain.Doctor
 {
     public class Doctor
     {

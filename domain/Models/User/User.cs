@@ -1,8 +1,8 @@
-using R = Domain.Role.Models;
+using R = Domain.Role;
 using Domain.Logic;
 
 
-namespace Domain.User.Models;
+namespace Domain.User;
 
 public class User
 {
